@@ -1,13 +1,12 @@
 import React from 'react';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import MoviesCard from '../MoviesCard/MoviesCard';
+import SearchForm from '../SearchForm/SearchForm'; 
 
 const SavedMovies = () => {
   return (
-    <div>
-      <p>SavedMovies</p> — компонент страницы с сохранёнными карточками фильмов.
+    <div className='movies'>
+      <SearchForm></SearchForm>
       <MoviesCardList></MoviesCardList>
-      <MoviesCard></MoviesCard>
     </div>
   );
 }
