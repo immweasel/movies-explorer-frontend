@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import './Profile.css';
 
 const Profile = ({ onAuth }) => {
   const [isVisible, setIsVisible] = useState(true);
@@ -34,7 +35,7 @@ const Profile = ({ onAuth }) => {
               required />
             <span
               className='profile__error'>
-              Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символов).
+              Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символа).
             </span>
           </label>
 
@@ -54,7 +55,7 @@ const Profile = ({ onAuth }) => {
               required />
             <span
               className='profile__error'>
-              Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символов).
+              Пожалуйста, используйте не менее 4 символов (сейчас вы используете 3 символа).
             </span>
           </label>
 

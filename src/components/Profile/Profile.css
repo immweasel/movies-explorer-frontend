@@ -96,7 +96,6 @@
 .profile__error-submit {
   position: absolute;
   bottom: 17px;
-  margin: 189px 0 0;
   display: block;
   color: #FF004C;
   font-family: 'Inter', Arial, sans-serif;
@@ -108,12 +107,12 @@
 .profile__btn-save {
   position: absolute;
   bottom: 0;
-  margin: 20px 0 20px;
-  padding: 0;
   display: none;
   height: 45px;
   width: 100%;
   max-width: 410px;
+  margin: 20px 0 20px;
+  padding: 0;
   color: #FFF;
   text-align: center;
   font-family: 'Inter', Arial, sans-serif;
@@ -222,7 +221,7 @@
   .profile__container {
     flex: 1;
   }
-  
+
   .profile__title {
     margin: 73px 0 0;
   }
