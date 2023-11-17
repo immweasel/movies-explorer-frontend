@@ -3,7 +3,6 @@ import { REGEX_EMAIL, REGEX_NAME } from '../../utils/constants';
 import AuthForm from '../AuthForm/AuthForm';
 import AuthInput from '../AuthInput/AuthInput';
 import useValidationsForms from '../../hooks/useValidationsForms';
-import './Register.css';
 
 const Register = ({
   onRegister,
