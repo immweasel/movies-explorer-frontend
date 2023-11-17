@@ -49,5 +49,5 @@ export const
   };
 
 export const configUrl = {
-  IMAGE_URL: 'https://api.nomoredomainsrocks.ru/'
+  IMAGE_URL: 'https://api.nomoreparties.co'
 };
