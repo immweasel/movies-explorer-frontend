@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import AccountButton from '../AccountButton/AccountButton';
 import './BurgerMenu.css';
 
-const BurgerMenu = () => {
-  const Authorized = React.useContext(CurrentUserContext);
+const BurgerMenu = ({ isLoggedIn }) => {
   const [isChecked, setChecked] = useState(false);
 
   const togleChecked = () => {
@@ -18,12 +16,11 @@ const BurgerMenu = () => {
   const handlerChecked = (e) => {
     const checked = e.target.checked;
     setChecked(checked);
-    console.log(isChecked);
   }
 
   return (
     <>
-      {Authorized === true ?
+      {isLoggedIn === true ?
         < div className={`burger-menu ${(isChecked === true ? '' : '')}`} >
           < input
             checked={isChecked}

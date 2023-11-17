@@ -1,6 +1,6 @@
 import React from 'react';
-import './AboutMe.css';
 import myPhoto from '../../images/my_photo.jpg';
+import './AboutMe.css';
 
 const AboutMe = () => {
   return (
@@ -17,7 +17,7 @@ const AboutMe = () => {
             <a href="https://github.com/immweasel"
                 target='_blank'
                 rel="noreferrer"
-                className="student__link links-hover">
+                className='student__link links-hover'>
                 Github
             </a>
             </li>
@@ -25,7 +25,7 @@ const AboutMe = () => {
             <a href="https://vk.com/soundfieldgirl"
                 target='_blank'
                 rel="noreferrer"
-                className="student__link links-hover">
+                className='student__link links-hover'>
                 Vkontakte
             </a>
             </li>
@@ -33,7 +33,7 @@ const AboutMe = () => {
             <a href="https://t.me/soundfieldgirl"
                 target='_blank'
                 rel="noreferrer"
-                className="student__link links-hover">
+                className='student__link links-hover'>
                 Telegram
             </a>
             </li>
@@ -49,10 +49,10 @@ const AboutMe = () => {
       <h2 className='student__title student__title_content_portfolio'>Портфолио</h2>
       <ul className='student__list-portfolio'>
         <li className='student__item-portfolio'>
-        <a href="https://github.com/immweasel/how-to-learn"
+        <a href="https://immweasel.github.io/how-to-learn/"
             target='_blank'
             rel="noreferrer"
-            className="student__link-portfolio links-hover">
+            className='student__link-portfolio links-hover'>
             Статичный сайт
             <span className='student__arrow-portfolio'>
               ↗
@@ -60,10 +60,10 @@ const AboutMe = () => {
           </a>
         </li>
         <li className='student__item-portfolio'>
-        <a href="https://github.com/immweasel/russian-travel"
+        <a href="https://immweasel.github.io/russian-travel/"
             target='_blank'
             rel="noreferrer"
-            className="student__link-portfolio links-hover">
+            className='student__link-portfolio links-hover'>
             Адаптивный сайт
             <span className='student__arrow-portfolio'>
               ↗
@@ -71,14 +71,12 @@ const AboutMe = () => {
           </a>
         </li>
         <li className='student__item-portfolio'>
-        <a href="https://github.com/immweasel/react-mesto-auth"
+        <a href="https://github.com/immweasel/mesto-react"
             target='_blank'
             rel="noreferrer"
-            className="student__link-portfolio links-hover">
+            className='student__link-portfolio links-hover'>
             Одностраничное приложение
-            <span className='student__arrow-portfolio'>
-              ↗
-            </span>
+            <span className='student__arrow-portfolio'>↗</span>
           </a>
         </li>
       </ul>
