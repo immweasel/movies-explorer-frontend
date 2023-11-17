@@ -65,7 +65,6 @@ export const logout = () => {
     })
 };
 
-// апи
 export const getUser = () => {
   return fetch(
     `${BASE_URL}${ENDPOINT_CHECKJWL}`,
