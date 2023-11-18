@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import SearchForm from '../SearchForm/SearchForm';
 import Preloader from '../Preloader/Preloader';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
-import { getFilms, } from '../../utils/MoviesApi';
+import { getFilms } from '../../utils/MoviesApi';
 import useFilteredFilms from '../../hooks/useFilteredFilms';
 import useCheckSavedFilm from '../../hooks/useCheckSavedFilm';
 import './Movies.css';

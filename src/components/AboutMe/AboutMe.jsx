@@ -49,7 +49,7 @@ const AboutMe = () => {
       <h2 className='student__title student__title_content_portfolio'>Портфолио</h2>
       <ul className='student__list-portfolio'>
         <li className='student__item-portfolio'>
-        <a href="https://immweasel.github.io/how-to-learn/"
+        <a href="https://github.com/immweasel/how-to-learn"
             target='_blank'
             rel="noreferrer"
             className='student__link-portfolio links-hover'>

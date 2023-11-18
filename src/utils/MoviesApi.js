@@ -9,7 +9,9 @@ const checkError = (res) => {
   }
 }
 
+// просто фильмы
 export const getFilms = () => {
+  console.log('sdfsdf');
   return fetch(
     configApiBeatfilm.BASE_URL,
     {

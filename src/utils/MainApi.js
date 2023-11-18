@@ -121,6 +121,7 @@ export const savedMovies = (movie) => {
     })
 };
 
+// сохраненные 
 export const getMovies = () => {
   return fetch(
     `${BASE_URL}${ENDPOINT_MOVIES}`,

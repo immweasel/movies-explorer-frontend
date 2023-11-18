@@ -27,7 +27,7 @@ const MoviesCardList = ({
     handleResize,
   } = useWindowCalculator();
 
-  const filtredMovies = listMovies.slice(0, moviesDisplay).map((movie) => {
+  const filteredMovies = listMovies.slice(0, moviesDisplay).map((movie) => {
 
     return (
       <MoviesCard
@@ -64,7 +64,7 @@ const MoviesCardList = ({
   });
 
   useEffect(() => {
-    setInsertList(filtredMovies);
+    setInsertList(filteredMovies);
   }, [moviesDisplay, stateChechbox, listMovies]);
 
   useEffect(() => {
@@ -81,7 +81,7 @@ const MoviesCardList = ({
       {listMovies.length !== 0
         ?
         <ul className='movies-list__list'>
-          {isSavedMovies ? savedMovies : filtredMovies}
+          {isSavedMovies ? savedMovies : filteredMovies}
         </ul>
         :
         <p
