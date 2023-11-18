@@ -14,6 +14,7 @@ const AuthInput = ({
   minLength,
   maxLength,
 }) => {
+  
   return (
     <label
       className='input-auth'

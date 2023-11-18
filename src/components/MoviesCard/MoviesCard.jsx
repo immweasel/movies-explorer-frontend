@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { configUrl } from '../../utils/constants';
 import './MoviesCard.css';
@@ -13,22 +13,25 @@ const MoviesCard = ({
     
   const { pathname } = useLocation();
 
+  const [isMovieSaved, setIsMovieSaved] = useState(movie.status);
+
   function msToTime(duration) {
 
     let minutes = duration % 60, hours = Math.floor(duration / 60);
     minutes = (minutes < 10) ? "0" + minutes : minutes;
     return hours + "ч" + minutes + 'м';
-    
   }
 
   const handleClickSave = (e) => {
     e.preventDefault();
     onSaveFilms(movie);
+    setIsMovieSaved(true);
   };
 
   const handleClickDeleteSaveFilm = () => {
     onDeleteSaveFilm(movie._id);
-  }
+    setIsMovieSaved(false);
+  };
 
   return (
     <li className='movie-card'>
@@ -48,16 +51,12 @@ const MoviesCard = ({
 
         {pathname === '/movies'
           ? <button
-            className={`movie-card__btn ${movie.status === true
-              ? 'movie-card__btn_saved'
-              : ''} links-hover`}
+            className={`movie-card__btn ${isMovieSaved ? 'movie-card__btn_saved' : ''} links-hover`}
             onClick={handleClickSave}
             disabled={onBlockedButton}
           ></button>
           : <button
-            className={`movie-card__btn ${checkSaved
-            ? 'movie-card__btn_saved'
-            : ''} links-hover`}
+            className={`movie-card__btn ${checkSaved ? 'movie-card__btn_delete-saved' : ''} links-hover`}
             onClick={handleClickDeleteSaveFilm}
             disabled={onBlockedButton}
           ></button>}

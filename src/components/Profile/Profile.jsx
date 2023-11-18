@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { currentUserContext } from '../../contexts/CurrentUserContext';
+import { emailRegex, nameRegex } from '../../utils/constants';
 import useValidationsForms from '../../hooks/useValidationsForms';
 import './Profile.css';
 
@@ -42,10 +43,6 @@ const Profile = ({
     setIsValid(true);
   }
 
-  const btnCU = () => {
-    console.log(name, email);
-  }
-
   useEffect(() => {
     setInputValues({ name, email });
     setChangesInput({ name, email });
@@ -82,12 +79,13 @@ const Profile = ({
           htmlFor="email">
           Имя
           <input
+            className='profile__input'
             placeholder='Введите имя'
             value={inputValues.name ?? ''}
             name='name'
             type="text"
             id='email'
-            className='profile__input'
+            pattern={nameRegex}
             onChange={handleChange}
             required />
           <span
@@ -102,12 +100,13 @@ const Profile = ({
           htmlFor="name">
           E-mail
           <input
+            className='profile__input'
             placeholder='Введите e-mail'
             value={inputValues.email ?? ''}
             name='email'
             type="email"
             id='name'
-            className='profile__input'
+            pattern={emailRegex}
             onChange={handleChange}
             required />
           <span
@@ -124,6 +123,7 @@ const Profile = ({
           {sourceInfoTooltips.message}
         </span>
         <button
+          // onDisabled={isValid}
           disabled={!isValid || onBlockedButton}
           className={`profile__btn-save
           ${isVisible === false

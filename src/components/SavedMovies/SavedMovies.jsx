@@ -9,7 +9,6 @@ const SavedMovies = ({
   onBlockedButton }) => {
 
   const [listMovies, setListMovies] = useState([]);
-
   const [isRequestBlock, setIsRequestBlock] = useState('');
   const [isCheckedShortFilms, setIsCheckedShortFilms] = useState(false);
 
