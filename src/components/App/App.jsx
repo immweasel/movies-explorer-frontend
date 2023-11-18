@@ -105,13 +105,13 @@ function App() {
         if (err === codeError.dataDublicate) {
           setSourceInfoTooltips({
             access: true,
-            message: message.USER_EXIST,
+            message: message.userExist,
           });
           setIsBlockedButton(false);
         } else {
           setSourceInfoTooltips({
             access: true,
-            message: message.REGISTER_USER_ERROR,
+            message: message.registerUserError,
           });
           setIsBlockedButton(false);
         }
@@ -136,14 +136,14 @@ function App() {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: message.LOGIN_PASSWORD_INCORRECT,
+            message: message.loginPasswordIncorrect,
           });
           setIsBlockedButton(false);
         } else {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: message.AUTHORIZATION_ERROR,
+            message: message.authorizationError,
           });
           setIsBlockedButton(false);
         }
@@ -187,7 +187,7 @@ function App() {
         setSourceInfoTooltips({
           access: true,
           isSuccess: true,
-          message: message.USER_DATE_MODIFIED,
+          message: message.userDateModified,
         });
         console.log(res);
       })
@@ -196,14 +196,14 @@ function App() {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: message.USER_EXIST,
+            message: message.userExist,
           });
           setIsBlockedButton(false);
         } else {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: message.REGISTER_USER_ERROR,
+            message: message.registerUserError,
           });
           setIsBlockedButton(false);
         }

@@ -1,17 +1,17 @@
 import { configMainApi, configUrl } from './constants';
 
 const {
-  BASE_URL,
+  baseApiUrl,
   headers,
   credentials,
   endpoint } = configMainApi;
 
 const {
-  ENDPOINT_REGISTER,
-  ENDPOINT_AUTH,
-  ENDPOINT_CHECKJWL,
-  ENDPOINT_OUT,
-  ENDPOINT_MOVIES } = endpoint;
+  endpointRegister,
+  endpointAuth,
+  endpointCheckJwl,
+  endpointOut,
+  endpointMovies } = endpoint;
 
 const checkError = (res) => {
   if (res.ok) {
@@ -24,7 +24,7 @@ const checkError = (res) => {
 
 export const register = ({ email, password, name }) => {
   return fetch(
-    `${BASE_URL}${ENDPOINT_REGISTER}`,
+    `${baseApiUrl}${endpointRegister}`,
     {
       method: 'POST',
       headers,
@@ -38,7 +38,7 @@ export const register = ({ email, password, name }) => {
 
 export const authorize = ({ email, password }) => {
   return fetch(
-    `${BASE_URL}${ENDPOINT_AUTH}`,
+    `${baseApiUrl}${endpointAuth}`,
     {
       method: 'POST',
       headers,
@@ -52,7 +52,7 @@ export const authorize = ({ email, password }) => {
 
 export const logout = () => {
   return fetch(
-    `${BASE_URL}${ENDPOINT_OUT}`,
+    `${baseApiUrl}${endpointOut}`,
     {
       method: 'GET',
       headers,
@@ -66,7 +66,7 @@ export const logout = () => {
 
 export const getUser = () => {
   return fetch(
-    `${BASE_URL}${ENDPOINT_CHECKJWL}`,
+    `${baseApiUrl}${endpointCheckJwl}`,
     {
       method: 'GET',
       headers,
@@ -80,7 +80,7 @@ export const getUser = () => {
 
 export const updateUserInfo = ({ name, email }) => {
   return fetch(
-    `${BASE_URL}${ENDPOINT_CHECKJWL}`,
+    `${baseApiUrl}${endpointCheckJwl}`,
     {
       method: 'PATCH',
       headers,
@@ -95,7 +95,7 @@ export const updateUserInfo = ({ name, email }) => {
 
 export const savedMovies = (movie) => {
   return fetch(
-    `${BASE_URL}${ENDPOINT_MOVIES}`,
+    `${baseApiUrl}${endpointMovies}`,
     {
       method: 'POST',
       headers,
@@ -106,11 +106,11 @@ export const savedMovies = (movie) => {
         duration: movie.duration,
         year: movie.year,
         description: movie.description,
-        image: `${configUrl.IMAGE_URL}${movie.image.url}`,
+        image: `${configUrl.imageUrl}${movie.image.url}`,
         trailerLink: movie.trailerLink,
         nameRU: movie.nameRU,
         nameEN: movie.nameEN,
-        thumbnail: `${configUrl.IMAGE_URL}${movie.image.formats.thumbnail.url}`,
+        thumbnail: `${configUrl.imageUrl}${movie.image.formats.thumbnail.url}`,
         movieId: movie.id,
       })
     }
@@ -123,7 +123,7 @@ export const savedMovies = (movie) => {
 // сохраненные 
 export const getMovies = () => {
   return fetch(
-    `${BASE_URL}${ENDPOINT_MOVIES}`,
+    `${baseApiUrl}${endpointMovies}`,
     {
       method: 'GET',
       headers,
@@ -137,7 +137,7 @@ export const getMovies = () => {
 
 export const deleteMovie = (movieId) => {
   return fetch(
-    `${BASE_URL}${ENDPOINT_MOVIES}/${movieId}`,
+    `${baseApiUrl}${endpointMovies}/${movieId}`,
     {
       method: 'DELETE',
       headers,

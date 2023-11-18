@@ -12,7 +12,7 @@ const checkError = (res) => {
 // просто фильмы
 export const getFilms = () => {
   return fetch(
-    configApiBeatFilm.BASE_URL,
+    configApiBeatFilm.baseFilmsApiUrl,
     {
       methods: 'GET',
       headers: configApiBeatFilm.headers,

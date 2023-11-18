@@ -11,13 +11,13 @@ const SearchForm = ({
   oldRequest,
 }) => {
 
-  const [errSearchMessage, setErrSearchMessage] = useState(message.SEARCH_PLACEHOLDER_INPUT);
+  const [errSearchMessage, setErrSearchMessage] = useState(message.searchPlaceholderInput);
 
   const inputSearch = useRef(null);
 
   const listenerValidation = (isValid) => {
-    if (isValid) { setErrSearchMessage(message.SEARCH_PLACEHOLDER_INPUT) }
-    else { setErrSearchMessage(message.EMPTY_PLACEHOLDER_INPUT) }
+    if (isValid) { setErrSearchMessage(message.searchPlaceholderInput) }
+    else { setErrSearchMessage(message.emptyPlaceholderInput) }
     inputSearch.current.focus();
   }
 
