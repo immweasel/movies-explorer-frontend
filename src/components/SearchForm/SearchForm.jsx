@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import useValidationsForms from '../../hooks/useValidationsForms';
-import { MESSAGE } from '../../utils/constants';
+import { message } from '../../utils/constants';
 import './SearchForm.css';
 
 const SearchForm = ({
@@ -11,13 +11,13 @@ const SearchForm = ({
   oldRequest,
 }) => {
 
-  const [errSearchMessage, setErrSearchMessage] = useState(MESSAGE.SEARCH_PLACEHOLDER_INPUT);
+  const [errSearchMessage, setErrSearchMessage] = useState(message.SEARCH_PLACEHOLDER_INPUT);
 
   const inputSearch = useRef(null);
 
   const listenerValidation = (isValid) => {
-    if (isValid) { setErrSearchMessage(MESSAGE.SEARCH_PLACEHOLDER_INPUT) }
-    else { setErrSearchMessage(MESSAGE.EMPTY_PLACEHOLDER_INPUT) }
+    if (isValid) { setErrSearchMessage(message.SEARCH_PLACEHOLDER_INPUT) }
+    else { setErrSearchMessage(message.EMPTY_PLACEHOLDER_INPUT) }
     inputSearch.current.focus();
   }
 

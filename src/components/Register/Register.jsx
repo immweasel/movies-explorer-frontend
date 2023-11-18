@@ -1,5 +1,5 @@
 import React from 'react';
-import { REGEX_EMAIL, REGEX_NAME } from '../../utils/constants';
+import { emailRegex, nameRegex } from '../../utils/constants';
 import AuthForm from '../AuthForm/AuthForm';
 import AuthInput from '../AuthInput/AuthInput';
 import useValidationsForms from '../../hooks/useValidationsForms';
@@ -47,7 +47,7 @@ const Register = ({
           inptValue={inputValues.name ?? ''}
           erorrMessage={errMessage.name ?? ''}
           onChange={handleChange}
-          pattern={REGEX_NAME}
+          pattern={nameRegex}
         />
 
         <AuthInput
@@ -59,7 +59,7 @@ const Register = ({
           inptValue={inputValues.email ?? ''}
           erorrMessage={errMessage.email ?? ''}
           onChange={handleChange}
-          pattern={REGEX_EMAIL}
+          pattern={emailRegex}
         />
 
         <AuthInput

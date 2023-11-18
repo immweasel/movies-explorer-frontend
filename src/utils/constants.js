@@ -1,12 +1,12 @@
-export const configApiBeatfilm = {
+export const configApiBeatFilm = {
   BASE_URL: 'https://api.nomoreparties.co/beatfilm-movies',
   headers: { "Content-Type": "application/json" },
 };
 
-export const REGEX_EMAIL = '^[a-zA-Z0-9+_.\\-]+@[a-zA-Z0-9]+\\.[a-zA-Z0-9]{2,4}$';
-export const REGEX_NAME = '[A-Za-zА-Яа-яЁё\\s\\-]+';
+export const emailRegex = /^((([0-9A-Za-z]{1}[-0-9A-z]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u;
+export const nameRegex = '[A-Za-zА-Яа-яЁё\\s\\-]+';
 
-export const ENDPOINTS = {
+export const endpoints = {
   ENDPOINT_REGISTER: '/signup',
   ENDPOINT_AUTH: '/signin',
   ENDPOINT_MOVIES: '/movies',
@@ -14,15 +14,15 @@ export const ENDPOINTS = {
   ENDPOINT_SAVED_MOVIES: '/saved-movies'
 }
 
-export const CODE_ERROR = {
+export const codeError = {
   dataDublicate: 409,
   authError: 401,
   dataError: 400,
 }
 
 export const configMainApi = {
-  // BASE_URL: 'http://localhost:3000',
-  BASE_URL: 'https://api.immweasel.diploma.nomoredomainsrocks.ru',
+  BASE_URL: 'http://localhost:3000',
+  // BASE_URL: 'https://api.immweasel.diploma.nomoredomainsrocks.ru',
   headers: {
     accept: 'application/json',
     'Content-type': 'application/json',
@@ -37,8 +37,7 @@ export const configMainApi = {
   }
 };
 
-export const
-  MESSAGE = {
+export const message = {
     SEARCH_PLACEHOLDER_INPUT: 'Фильм',
     EMPTY_PLACEHOLDER_INPUT: 'Нужно ввести ключевое слово',
     USER_EXIST: ' Пользователь с таким email уже существует.',

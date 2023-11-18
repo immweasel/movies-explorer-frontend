@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { currentUserContext } from '../../contexts/CurrentUserContext';
 import useValidationsForms from '../../hooks/useValidationsForms';
 import './Profile.css';
 
@@ -11,7 +11,7 @@ const Profile = ({
   onUpdateUserInfo,
   onBlockedButton }) => {
 
-  const { name, email } = useContext(CurrentUserContext);
+  const { name, email } = useContext(currentUserContext);
   const [isVisible, setIsVisible] = useState(true);
   const [isRedact, setIsRedact] = useState(false);
   const [changesInput, setChangesInput] = useState({

@@ -1,4 +1,3 @@
-import SavedMovies from '../components/SavedMovies/SavedMovies';
 import { configMainApi, configUrl } from './constants';
 
 const {

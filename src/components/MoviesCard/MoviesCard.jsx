@@ -10,6 +10,7 @@ const MoviesCard = ({
   onDeleteSaveFilm,
   checkSaved,
   onBlockedButton }) => {
+    
   const { pathname } = useLocation();
 
   function msToTime(duration) {

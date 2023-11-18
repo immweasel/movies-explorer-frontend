@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, useLocation, useNavigate, Navigate } from 'react-router-dom';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { currentUserContext } from '../../contexts/CurrentUserContext';
 import { register, authorize, logout, getUser, updateUserInfo, savedMovies, getMovies, deleteMovie } from '../../utils/MainApi';
-import { MESSAGE, ENDPOINTS, CODE_ERROR } from '../../utils/constants';
+import { message, codeError } from '../../utils/constants';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -50,7 +50,7 @@ function App() {
       })
       .catch((err) => {
         console.error(err);
-        if (err === CODE_ERROR.authError) {
+        if (err === codeError.authError) {
           removeCookie();
         }
         setIsBlockedButton(false);
@@ -73,7 +73,7 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        if (err === CODE_ERROR.authError) {
+        if (err === codeError.authError) {
           removeCookie();
         }
         setIsBlockedButton(false);
@@ -102,16 +102,16 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        if (err === CODE_ERROR.dataDublicate) {
+        if (err === codeError.dataDublicate) {
           setSourceInfoTooltips({
             access: true,
-            message: MESSAGE.USER_EXIST,
+            message: message.USER_EXIST,
           });
           setIsBlockedButton(false);
         } else {
           setSourceInfoTooltips({
             access: true,
-            message: MESSAGE.REGISTER_USER_ERROR,
+            message: message.REGISTER_USER_ERROR,
           });
           setIsBlockedButton(false);
         }
@@ -132,18 +132,18 @@ function App() {
       })
       .catch((err) => {
         console.log(err);
-        if (err === CODE_ERROR.authError) {
+        if (err === codeError.authError) {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: MESSAGE.LOGIN_PASSWORD_INCORRECT,
+            message: message.LOGIN_PASSWORD_INCORRECT,
           });
           setIsBlockedButton(false);
         } else {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: MESSAGE.AUTHORIZATION_ERROR,
+            message: message.AUTHORIZATION_ERROR,
           });
           setIsBlockedButton(false);
         }
@@ -187,23 +187,23 @@ function App() {
         setSourceInfoTooltips({
           access: true,
           isSuccess: true,
-          message: MESSAGE.USER_DATE_MODIFIED,
+          message: message.USER_DATE_MODIFIED,
         });
         console.log(res);
       })
       .catch((err) => {
-        if (err === CODE_ERROR.dataDublicate) {
+        if (err === codeError.dataDublicate) {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: MESSAGE.USER_EXIST,
+            message: message.USER_EXIST,
           });
           setIsBlockedButton(false);
         } else {
           setSourceInfoTooltips({
             access: true,
             isSuccess: false,
-            message: MESSAGE.REGISTER_USER_ERROR,
+            message: message.REGISTER_USER_ERROR,
           });
           setIsBlockedButton(false);
         }
@@ -235,7 +235,7 @@ function App() {
   return (
     <div className='app'>
       <div className='page'>
-        <CurrentUserContext.Provider
+        <currentUserContext.Provider
           value={currentUser}>
           <Header
             isLoggedIn={isAuthorized}
@@ -315,7 +315,7 @@ function App() {
               } />
           </Routes>
           <Footer></Footer>
-        </CurrentUserContext.Provider>
+        </currentUserContext.Provider>
       </div>
     </div >
   );

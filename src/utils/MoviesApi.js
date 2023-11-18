@@ -1,4 +1,4 @@
-import { configApiBeatfilm } from '../utils/constants';
+import { configApiBeatFilm } from '../utils/constants';
 
 const checkError = (res) => {
   if (res.ok) {
@@ -11,12 +11,11 @@ const checkError = (res) => {
 
 // просто фильмы
 export const getFilms = () => {
-  console.log('sdfsdf');
   return fetch(
-    configApiBeatfilm.BASE_URL,
+    configApiBeatFilm.BASE_URL,
     {
       methods: 'GET',
-      headers: configApiBeatfilm.headers,
+      headers: configApiBeatFilm.headers,
     },
   )
     .then((res) => {
