@@ -1,16 +1,18 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { configUrl } from '../../utils/constants';
+import { deleteMovie, getMovies, savedMovies } from '../../utils/MainApi';
 import './MoviesCard.css';
 
 const MoviesCard = ({
   movie,
+  savedFilms,
   onSaveFilms,
   isSavedMovies,
   onDeleteSaveFilm,
   checkSaved,
   onBlockedButton }) => {
-    
+
   const { pathname } = useLocation();
 
   // стейт изменения состояния кнопки
@@ -34,59 +36,69 @@ const MoviesCard = ({
   };
 
   const handleClickDeleteSaveFilm = () => {
+    console.log(movie);
     onDeleteSaveFilm(movie);
     setIsMovieSaved(prevState => !prevState);
   };
 
-  // const handleClickSave = (e) => {
-  //   e.preventDefault();
-  //   const action = isMovieSaved ? onDeleteSaveFilm : onSaveFilms;
-  //   action(movie)
-  //     .then(() => {
-  //       setIsMovieSaved(prevState => !prevState);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //       if (err === codeError.authError) {
-  //         removeCookie();
-  //       }
-  //     });
-  // };
+  // общий тоггл на кнопку
+  function handleClick() {
+    console.log(movie);
+    console.log(savedFilms);
+    if (savedFilms.length === 0) {
+      savedFilms.forEach((item) => {
+        if (item.movieId === movie.id) {
+          deleteMovie(item._id).catch(console.error)
+          console.log(item);
+          console.log('delete');
+          return;
+        }
+      })
+      onSaveFilms(movie);
+      console.log('save');
+    }
+    onSaveFilms(movie);
+  }
 
-  return (
-    <li className='movie-card'>
-      <a href={movie.trailerLink} target='_blank' rel='noreferrer'>
-        <img src={isSavedMovies ? movie.image : `${configUrl.imageUrl}${movie.image.url}`}
-          alt={movie.description}
-          className='movie-card__image'
-        />
-      </a>
-      <div className='movie-card__wrapper'>
-        <div className='movie-card__info'>
-          <h2 className='movie-card__title'>
-            {movie.nameRU}
-          </h2>
-          <p className='movie-card__duration'>{msToTime(movie.duration)}</p>
+      // savedFilms.find((item) => {
+      //   return item.movieId === movie.id;
+      //   onDeleteSaveFilm(item);
+      // });
+
+    return (
+      <li className='movie-card'>
+        <a href={movie.trailerLink} target='_blank' rel='noreferrer'>
+          <img src={isSavedMovies ? movie.image : `${configUrl.imageUrl}${movie.image.url}`}
+            alt={movie.description}
+            className='movie-card__image'
+          />
+        </a>
+        <div className='movie-card__wrapper'>
+          <div className='movie-card__info'>
+            <h2 className='movie-card__title'>
+              {movie.nameRU}
+            </h2>
+            <p className='movie-card__duration'>{msToTime(movie.duration)}</p>
+          </div>
+
+          {pathname === '/movies'
+            ? <button
+              id={`movie-card__btn_${movie._id}`}
+              className={`movie-card__btn ${checkSaved ? 'movie-card__btn_saved' : ''} links-hover`}
+              onClick={handleClick}
+              // onClick={handleClickSave}
+              disabled={onBlockedButton}
+            ></button>
+            : <button
+              id={`movie-card__btn_${movie._id}`}
+              className={`movie-card__btn ${checkSaved ? 'movie-card__btn_delete-saved' : ''} links-hover`}
+              onClick={handleClickDeleteSaveFilm(movie._id)}
+              disabled={onBlockedButton}
+            ></button>}
         </div>
+      </li>
+    );
+  }
 
-        {pathname === '/movies'
-          ? <button
-            // ref={btnRef}
-            id={`movie-card__btn_${movie._id}`}
-            className={`movie-card__btn ${checkSaved ? 'movie-card__btn_saved' : ''} links-hover`}
-            onClick={handleClickSave}
-            disabled={onBlockedButton}
-          ></button>
-          : <button
-            // ref={btnRef}
-            id={`movie-card__btn_${movie._id}`}
-            className={`movie-card__btn ${checkSaved ? 'movie-card__btn_delete-saved' : ''} links-hover`}
-            onClick={handleClickDeleteSaveFilm}
-            disabled={onBlockedButton}
-          ></button>}
-      </div>
-    </li>
-  );
-}
 
-export default MoviesCard;
+  export default MoviesCard;

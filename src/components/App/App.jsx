@@ -34,6 +34,7 @@ function App() {
 
   // сохранненые фильмы
   const [savedFilms, setSavedFilms] = useState([]);
+
   const resetSourceInfoTooltips = () => {
     setSourceInfoTooltips({
       access: false,
@@ -43,6 +44,7 @@ function App() {
   }
 
   const handlerSaveFilms = (movie) => {
+    console.log(movie);
     savedMovies(movie)
       .then((data) => {
         setSavedFilms([data, ...savedFilms]);
