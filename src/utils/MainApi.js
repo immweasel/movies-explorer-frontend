@@ -136,6 +136,7 @@ export const getMovies = () => {
 };
 
 export const deleteMovie = (movieId) => {
+  console.log(movieId);
   return fetch(
     `${baseApiUrl}${endpointMovies}/${movieId}`,
     {

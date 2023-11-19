@@ -106,7 +106,7 @@ const Profile = ({
             name='email'
             type="email"
             id='name'
-            pattern={emailRegex}
+            pattern='[a-z0-9]+@[a-z]+\.[a-z]{2,}'
             onChange={handleChange}
             required />
           <span
@@ -123,7 +123,6 @@ const Profile = ({
           {sourceInfoTooltips.message}
         </span>
         <button
-          // onDisabled={isValid}
           disabled={!isValid || onBlockedButton}
           className={`profile__btn-save
           ${isVisible === false

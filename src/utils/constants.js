@@ -3,7 +3,7 @@ export const configApiBeatFilm = {
   headers: { "Content-Type": "application/json" },
 };
 
-export const emailRegex = /^((([0-9A-Za-z]{1}[-0-9A-z]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u;
+export const emailRegex = '/^((([0-9A-Za-z]{1}[-0-9A-z]{1,}[0-9A-Za-z]{1})|([0-9А-Яа-я]{1}[-0-9А-я]{1,}[0-9А-Яа-я]{1}))@([-A-Za-z]{1,}\.){1,2}[-A-Za-z]{2,})$/u';
 export const nameRegex = '[A-Za-zА-Яа-яЁё\\s\\-]+';
 
 export const endpoints = {
@@ -40,7 +40,7 @@ export const configMainApi = {
 export const message = {
     searchPlaceholderInput: 'Фильм', 
     emptyPlaceholderInput: 'Нужно ввести ключевое слово', 
-    userExist: ' Пользователь с таким email уже существует', 
+    userExist: 'Пользователь с таким email уже существует', 
     registerUserError: 'При регистрации пользователя произошла ошибка', 
     loginPasswordIncorrect: 'Вы ввели неправильный логин или пароль', 
     authorizationError: 'При авторизации произошла ошибка', 

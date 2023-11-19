@@ -36,6 +36,7 @@ const MoviesCardList = ({
         isSavedMovies={isSavedMovies}
         onSaveFilms={onSaveFilms}
         onDeleteSaveFilm={onDeleteSaveFilm}
+        // checkSaved={() =>{ checkSaved(savedFilms, movie)}}
         checkSaved={
           isSavedMovies
             ? true

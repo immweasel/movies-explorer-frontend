@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import { configUrl } from '../../utils/constants';
 import './MoviesCard.css';
@@ -13,6 +13,7 @@ const MoviesCard = ({
     
   const { pathname } = useLocation();
 
+  // стейт изменения состояния кнопки
   const [isMovieSaved, setIsMovieSaved] = useState(movie.status);
 
   function msToTime(duration) {
@@ -24,14 +25,33 @@ const MoviesCard = ({
 
   const handleClickSave = (e) => {
     e.preventDefault();
-    onSaveFilms(movie);
-    setIsMovieSaved(true);
+    if (isMovieSaved) {
+      onDeleteSaveFilm(movie);
+    } else {
+      onSaveFilms(movie);
+    }
+    setIsMovieSaved(prevState => !prevState);
   };
 
   const handleClickDeleteSaveFilm = () => {
-    onDeleteSaveFilm(movie._id);
-    setIsMovieSaved(false);
+    onDeleteSaveFilm(movie);
+    setIsMovieSaved(prevState => !prevState);
   };
+
+  // const handleClickSave = (e) => {
+  //   e.preventDefault();
+  //   const action = isMovieSaved ? onDeleteSaveFilm : onSaveFilms;
+  //   action(movie)
+  //     .then(() => {
+  //       setIsMovieSaved(prevState => !prevState);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       if (err === codeError.authError) {
+  //         removeCookie();
+  //       }
+  //     });
+  // };
 
   return (
     <li className='movie-card'>
@@ -51,11 +71,15 @@ const MoviesCard = ({
 
         {pathname === '/movies'
           ? <button
-            className={`movie-card__btn ${isMovieSaved ? 'movie-card__btn_saved' : ''} links-hover`}
+            // ref={btnRef}
+            id={`movie-card__btn_${movie._id}`}
+            className={`movie-card__btn ${checkSaved ? 'movie-card__btn_saved' : ''} links-hover`}
             onClick={handleClickSave}
             disabled={onBlockedButton}
           ></button>
           : <button
+            // ref={btnRef}
+            id={`movie-card__btn_${movie._id}`}
             className={`movie-card__btn ${checkSaved ? 'movie-card__btn_delete-saved' : ''} links-hover`}
             onClick={handleClickDeleteSaveFilm}
             disabled={onBlockedButton}

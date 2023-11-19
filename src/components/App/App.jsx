@@ -43,7 +43,6 @@ function App() {
   }
 
   const handlerSaveFilms = (movie) => {
-    setIsBlockedButton(true);
     savedMovies(movie)
       .then((data) => {
         setSavedFilms([data, ...savedFilms]);
@@ -53,34 +52,24 @@ function App() {
         if (err === codeError.authError) {
           removeCookie();
         }
-        setIsBlockedButton(false);
       })
       .finally(() => {
-        setIsBlockedButton(false);
       });
   };
 
-  const handleDeleteSaveFilm = (movieId) => {
-    setIsBlockedButton(true);
+  const handleDeleteSaveFilm = (movie) => {
+    const movieId = movie._id;
     deleteMovie(movieId)
-      .then((res) => {
-        setSavedFilms(
-          savedFilms.filter((movie) => {
-            return movie._id !== movieId;
-          })
-        );
-        setIsBlockedButton(false);
+      .then(() => {
+        const updatedSavedFilms = savedFilms.filter(savedMovie => savedMovie._id !== movie._id);
+        setSavedFilms(updatedSavedFilms);
       })
       .catch((err) => {
         console.log(err);
         if (err === codeError.authError) {
           removeCookie();
         }
-        setIsBlockedButton(false);
       })
-      .finally(() => {
-        setIsBlockedButton(false);
-      });
   };
 
   const getingSavedFilms = () => {
@@ -297,9 +286,7 @@ function App() {
               ></ProtectedRoute>
             }
             />
-            <Route
-              path='/saved-movies'
-              element={
+            <Route path='/saved-movies' element={
                 <ProtectedRoute
                   element={SavedMovies}
                   isLoggedIn={isAuthorized}

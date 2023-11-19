@@ -42,7 +42,7 @@ const Movies = ({
   const handleSavedFilms = (movie) => {
     const savedFilm = checkSaved(savedFilms, movie);
     if (savedFilm) {
-      onDeleteSaveFilm(savedFilm._id);
+      onDeleteSaveFilm(savedFilm);
       return;
     } else {
       onSaveFilms(movie);
@@ -101,6 +101,7 @@ const Movies = ({
           onSaveFilms={handleSavedFilms}
           savedFilms={savedFilms}
           onBlockedButton={onBlockedButton}
+          onDeleteSaveFilm={onDeleteSaveFilm}
         ></MoviesCardList>)
       }
     </main >
