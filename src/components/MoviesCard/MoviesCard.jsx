@@ -6,7 +6,6 @@ import './MoviesCard.css';
 
 const MoviesCard = ({
   movie,
-  savedFilms,
   onSaveFilms,
   isSavedMovies,
   onDeleteSaveFilm,
@@ -28,7 +27,7 @@ const MoviesCard = ({
   const handleClickSave = (e) => {
     e.preventDefault();
     if (isMovieSaved) {
-      onDeleteSaveFilm(movie);
+      onDeleteSaveFilm(movie._id);
     } else {
       onSaveFilms(movie);
     }
@@ -36,34 +35,9 @@ const MoviesCard = ({
   };
 
   const handleClickDeleteSaveFilm = () => {
-    console.log(movie);
-    onDeleteSaveFilm(movie);
+    onDeleteSaveFilm(movie._id);
     setIsMovieSaved(prevState => !prevState);
   };
-
-  // общий тоггл на кнопку
-  function handleClick() {
-    console.log(movie);
-    console.log(savedFilms);
-    if (savedFilms.length === 0) {
-      savedFilms.forEach((item) => {
-        if (item.movieId === movie.id) {
-          deleteMovie(item._id).catch(console.error)
-          console.log(item);
-          console.log('delete');
-          return;
-        }
-      })
-      onSaveFilms(movie);
-      console.log('save');
-    }
-    onSaveFilms(movie);
-  }
-
-      // savedFilms.find((item) => {
-      //   return item.movieId === movie.id;
-      //   onDeleteSaveFilm(item);
-      // });
 
     return (
       <li className='movie-card'>
@@ -83,16 +57,14 @@ const MoviesCard = ({
 
           {pathname === '/movies'
             ? <button
-              id={`movie-card__btn_${movie._id}`}
               className={`movie-card__btn ${checkSaved ? 'movie-card__btn_saved' : ''} links-hover`}
-              onClick={handleClick}
-              // onClick={handleClickSave}
+              // onClick={handleClick}
+              onClick={handleClickSave}
               disabled={onBlockedButton}
             ></button>
             : <button
-              id={`movie-card__btn_${movie._id}`}
               className={`movie-card__btn ${checkSaved ? 'movie-card__btn_delete-saved' : ''} links-hover`}
-              onClick={handleClickDeleteSaveFilm(movie._id)}
+              onClick={handleClickDeleteSaveFilm}
               disabled={onBlockedButton}
             ></button>}
         </div>

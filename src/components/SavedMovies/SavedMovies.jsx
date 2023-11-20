@@ -13,7 +13,7 @@ const SavedMovies = ({
   const [isCheckedShortFilms, setIsCheckedShortFilms] = useState(false);
 
   const { foundFilms } = useFilteredFilms();
-
+  
   const handleChangeCheckbox = () => {
     if (savedFilms) {
       setIsCheckedShortFilms(!isCheckedShortFilms);
@@ -52,13 +52,11 @@ const SavedMovies = ({
 
   return (
     <div className='movies'>
-
       <SearchForm
         onChange={handleChangeCheckbox}
         onSubmit={handleSubmit}
         isChecked={isCheckedShortFilms}
       ></SearchForm>
-
       <MoviesCardList
         listMovies={listMovies}
         onDeleteSaveFilm={onDeleteSaveFilm}

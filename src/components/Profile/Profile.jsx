@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { currentUserContext } from '../../contexts/CurrentUserContext';
-import { emailRegex, nameRegex } from '../../utils/constants';
+import { nameRegex } from '../../utils/constants';
 import useValidationsForms from '../../hooks/useValidationsForms';
 import './Profile.css';
 
@@ -10,14 +10,15 @@ const Profile = ({
   sourceInfoTooltips,
   onResetSourceInfoTooltips,
   onUpdateUserInfo,
-  onBlockedButton }) => {
-
+  onBlockedButton
+}) => {
   const { name, email } = useContext(currentUserContext);
+
   const [isVisible, setIsVisible] = useState(true);
-  const [isRedact, setIsRedact] = useState(false);
+  const [isRedact, setIsRedact] = useState(true);
   const [changesInput, setChangesInput] = useState({
     name: '',
-    email: '',
+    email: ''
   });
 
   const {
@@ -26,22 +27,24 @@ const Profile = ({
     isValid,
     handleChange,
     setInputValues,
-    setIsValid,
+    setIsValid
   } = useValidationsForms();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isValid) {
       onUpdateUserInfo(inputValues);
+      setIsRedact(true);
     }
-  }
+  };
 
   const handleRedact = (e) => {
     e.preventDefault();
     onResetSourceInfoTooltips();
     setIsVisible(!isVisible);
     setIsValid(true);
-  }
+    setIsRedact(false);
+  };
 
   useEffect(() => {
     setInputValues({ name, email });
@@ -49,110 +52,98 @@ const Profile = ({
   }, [name, email]);
 
   useEffect(() => {
-    if (
-      inputValues.name === changesInput.name
-      && inputValues.email === changesInput.email
-    ) {
+    if (inputValues.name === changesInput.name && inputValues.email === changesInput.email) {
       setIsRedact(true);
     } else {
       setIsRedact(false);
     }
-  }, [inputValues])
+  }, [inputValues]);
 
   useEffect(() => {
     if (sourceInfoTooltips.isSuccess) {
       setIsVisible(true);
-    } 
+    }
   }, [sourceInfoTooltips]);
 
   return (
-    <main className='profile'>
+    <main className="profile">
+      <div className="profile__container">
+        <h1 className="profile__title">{`Привет, ${name}!`}</h1>
+        <form className="profile__form" onSubmit={handleSubmit} noValidate>
+          <label className="profile__label" htmlFor="email">
+            Имя
+            <input
+              className="profile__input"
+              placeholder="Введите имя"
+              value={inputValues.name ?? ''}
+              name="name"
+              type="text"
+              id="email"
+              pattern={nameRegex}
+              onChange={handleChange}
+              required
+            />
+            <span className="profile__error">{errMessage.name}</span>
+          </label>
 
-    <div className='profile__container'>
-      <h1 className='profile__title'>{`Привет, ${name}!`}</h1>
-      <form className='profile__form'
-        onSubmit={handleSubmit}
-        noValidate
-      >
-        <label
-          className='profile__label'
-          htmlFor="email">
-          Имя
-          <input
-            className='profile__input'
-            placeholder='Введите имя'
-            value={inputValues.name ?? ''}
-            name='name'
-            type="text"
-            id='email'
-            pattern={nameRegex}
-            onChange={handleChange}
-            required />
-          <span
-            className='profile__error'>
-            {errMessage.name}
-          </span>
-        </label>
+          <div className="profile__line"></div>
 
-        <div className='profile__line'></div>
-        <label
-          className='profile__label'
-          htmlFor="name">
-          E-mail
-          <input
-            className='profile__input'
-            placeholder='Введите e-mail'
-            value={inputValues.email ?? ''}
-            name='email'
-            type="email"
-            id='name'
-            pattern='[a-z0-9]+@[a-z]+\.[a-z]{2,}'
-            onChange={handleChange}
-            required />
+          <label className="profile__label" htmlFor="name">
+            E-mail
+            <input
+              className="profile__input"
+              placeholder="Введите e-mail"
+              value={inputValues.email ?? ''}
+              name="email"
+              type="email"
+              id="name"
+              pattern="[a-z0-9]+@[a-z0-9]+\.[a-z0-9]{2,3}"
+              onChange={handleChange}
+              required
+            />
+            <span className="profile__error">{errMessage.email}</span>
+          </label>
+
           <span
-            className='profile__error'>
-            {errMessage.email}
+            className={`profile__error-submit ${
+              isVisible === false ? 'profile__error-submit_show' : ''
+            } ${sourceInfoTooltips.isSuccess ? 'profile__error-submit_success' : ''}`}
+          >
+            {sourceInfoTooltips.message}
           </span>
-        </label>
-        <span
-          className={`profile__error-submit
-            ${isVisible === false
-              ? 'profile__error-submit_show'
-              : ''}
-          ${sourceInfoTooltips.isSuccess ? 'profile__error-submit_success' : ''}`}>
-          {sourceInfoTooltips.message}
-        </span>
+
+          <button
+            disabled={!isValid || onBlockedButton || isRedact}
+            className={`profile__btn-save ${
+              isVisible === false ? 'profile__btn-save_show' : ''
+            }`}
+          >
+            Сохранить
+          </button>
+        </form>
+
         <button
-          disabled={!isValid || onBlockedButton}
-          className={`profile__btn-save
-          ${isVisible === false
-              ? 'profile__btn-save_show'
-              : ''}`}>
-          Сохранить
+          disabled={isRedact || !isValid}
+          onClick={handleRedact}
+          className={`profile__btn-redact ${
+            isVisible === true ? 'profile__btn-redact_show' : ''
+          } links-hover`}
+        >
+          Редактировать
         </button>
-      </form>
-      <button
-        disabled={isRedact || !isValid}
-        onClick={handleRedact}
-        className={`profile__btn-redact
-            ${isVisible === true
-            ? 'profile__btn-redact_show'
-            : ''}
-            links-hover`}>
-        Редактировать
-      </button>
-      <Link
-        to='/'
-        className={`profile__link
-        ${isVisible === true
-            ? 'profile__link_show'
-            : ''} links-hover`}
-        onClick={onRemoveCookie}>
-        Выйти из аккаунта
-      </Link>
-    </div>
-  </main >
-);
-}
+
+        <Link
+          to="/"
+          className={`profile__link ${
+            isVisible === true ? 'profile__link_show' : ''
+          } links-hover`}
+          onClick={onRemoveCookie}
+        >
+          Выйти из аккаунта
+        </Link>
+      </div>
+    </main>
+  );
+};
 
 export default Profile;

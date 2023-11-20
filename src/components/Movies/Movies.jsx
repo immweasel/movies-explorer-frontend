@@ -42,7 +42,7 @@ const Movies = ({
   const handleSavedFilms = (movie) => {
     const savedFilm = checkSaved(savedFilms, movie);
     if (savedFilm) {
-      onDeleteSaveFilm(savedFilm);
+      onDeleteSaveFilm(savedFilm._id);
       return;
     } else {
       onSaveFilms(movie);
@@ -72,7 +72,6 @@ const Movies = ({
     localStorage.setItem('request', JSON.stringify(request));
   }
 
-
   useEffect(() => {
     if (requestStorage !== '') {
       setIsFindMoviesList(foundFilms(moviesAll, requestStorage, isCheckedShortFilms));
@@ -99,9 +98,9 @@ const Movies = ({
           listMovies={isFindMoviesList}
           stateChechbox={isCheckedShortFilms}
           onSaveFilms={handleSavedFilms}
+          onDeleteSaveFilm={onDeleteSaveFilm}
           savedFilms={savedFilms}
           onBlockedButton={onBlockedButton}
-          onDeleteSaveFilm={onDeleteSaveFilm}
         ></MoviesCardList>)
       }
     </main >

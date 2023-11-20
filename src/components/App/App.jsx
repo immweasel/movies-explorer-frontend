@@ -44,7 +44,7 @@ function App() {
   }
 
   const handlerSaveFilms = (movie) => {
-    console.log(movie);
+    setIsBlockedButton(true);
     savedMovies(movie)
       .then((data) => {
         setSavedFilms([data, ...savedFilms]);
@@ -54,24 +54,42 @@ function App() {
         if (err === codeError.authError) {
           removeCookie();
         }
+        setIsBlockedButton(false);
       })
       .finally(() => {
+        setIsBlockedButton(false);
       });
   };
 
-  const handleDeleteSaveFilm = (movie) => {
-    const movieId = movie._id;
-    deleteMovie(movieId)
-      .then(() => {
-        const updatedSavedFilms = savedFilms.filter(savedMovie => savedMovie._id !== movie._id);
-        setSavedFilms(updatedSavedFilms);
+  const handleDeleteSaveFilm = (movieId) => {
+    setIsBlockedButton(true);
+
+    const handledMovie = savedFilms.find((item) => {
+      if (pathname === '/saved-movies') {
+        return item.movieId === movieId;
+      } else {
+        return item.movieId === movieId;
+      }
+    });
+
+    const id = handledMovie ? handledMovie.id : movieId;
+
+    deleteMovie(id)
+      .then((res) => {
+        const updateList = savedFilms.filter((movie) => movie._id !== id);
+        setIsBlockedButton(false);
+        setSavedFilms(updateList)
       })
       .catch((err) => {
         console.log(err);
         if (err === codeError.authError) {
           removeCookie();
         }
+        setIsBlockedButton(false);
       })
+      .finally(() => {
+        setIsBlockedButton(false);
+      });
   };
 
   const getingSavedFilms = () => {
