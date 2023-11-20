@@ -42,9 +42,7 @@ const Movies = ({
   const handleSavedFilms = (movie) => {
     const savedFilm = checkSaved(savedFilms, movie);
     if (savedFilm) {
-      console.log(savedFilm._id);
       onDeleteSaveFilm(savedFilm._id);
-      // return;
     } else {
       onSaveFilms(movie);
     }

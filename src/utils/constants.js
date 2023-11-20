@@ -21,8 +21,8 @@ export const codeError = {
 }
 
 export const configMainApi = {
-  baseApiUrl: 'http://localhost:3000',
-  // baseApiUrl: 'https://api.immweasel.diploma.nomoredomainsrocks.ru',
+  // baseApiUrl: 'http://localhost:3000',
+  baseApiUrl: 'https://api.immweasel.diploma.nomoredomainsrocks.ru',
   headers: {
     accept: 'application/json',
     'Content-type': 'application/json',
