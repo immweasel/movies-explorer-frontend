@@ -68,10 +68,8 @@ const MoviesCardList = ({
   }, [moviesDisplay, stateChechbox, listMovies]);
 
   useEffect(() => {
-    // вешаем слушатель
     handleResize();
     window.addEventListener('resize', resizeDelay);
-    // снимаем слушатель
     return () => window.removeEventListener('resize', resizeDelay);
   }, []);
 

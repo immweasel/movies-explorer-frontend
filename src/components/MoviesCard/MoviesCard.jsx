@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { configUrl } from '../../utils/constants';
-import { deleteMovie, getMovies, savedMovies } from '../../utils/MainApi';
 import './MoviesCard.css';
 
 const MoviesCard = ({
@@ -58,7 +57,6 @@ const MoviesCard = ({
           {pathname === '/movies'
             ? <button
               className={`movie-card__btn ${checkSaved ? 'movie-card__btn_saved' : ''} links-hover`}
-              // onClick={handleClick}
               onClick={handleClickSave}
               disabled={onBlockedButton}
             ></button>
