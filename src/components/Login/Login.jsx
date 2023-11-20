@@ -1,5 +1,4 @@
 import React from 'react';
-import { emailRegex } from '../../utils/constants';
 import AuthForm from '../AuthForm/AuthForm';
 import AuthInput from '../AuthInput/AuthInput';
 import useValidationsForms from '../../hooks/useValidationsForms';
@@ -45,7 +44,7 @@ const Login = ({
           idInput={'email'}
           nameInput={'email'}
           onChange={handleChange}
-          pattern={emailRegex}
+          pattern="[a-z0-9]+@[a-z0-9]+\.[a-z0-9]{2,3}"
           inputValue={inputValues.email ?? ''}
           erorrMessage={errMessage.email ?? ''}
         />

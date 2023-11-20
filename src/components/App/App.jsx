@@ -47,7 +47,7 @@ function App() {
     setIsBlockedButton(true);
     savedMovies(movie)
       .then((data) => {
-        setSavedFilms([data, ...savedFilms]);
+        setSavedFilms(savedFilms => ([data, ...savedFilms]));
       })
       .catch((err) => {
         console.error(err);
@@ -64,21 +64,11 @@ function App() {
   const handleDeleteSaveFilm = (movieId) => {
     setIsBlockedButton(true);
 
-    const handledMovie = savedFilms.find((item) => {
-      if (pathname === '/saved-movies') {
-        return item.movieId === movieId;
-      } else {
-        return item.movieId === movieId;
-      }
-    });
-
-    const id = handledMovie ? handledMovie.id : movieId;
-
-    deleteMovie(id)
+    deleteMovie(movieId)
       .then((res) => {
-        const updateList = savedFilms.filter((movie) => movie._id !== id);
+        const updateList = savedFilms.filter((movie) => movie._id !== movieId);
         setIsBlockedButton(false);
-        setSavedFilms(updateList)
+        setSavedFilms(updateList);
       })
       .catch((err) => {
         console.log(err);
@@ -224,7 +214,8 @@ function App() {
 
   useEffect(() => {
     const currentPath = pathname;
-    getUser()
+    if (!isAuthorized) {
+      getUser()
       .then((user) => {
         setCurrentUser(user);
         setAuthorized(true);
@@ -233,6 +224,7 @@ function App() {
       .catch((err) => {
         console.log(err);
       });
+    }
   }, [isAuthorized]);
 
   useEffect(() => {

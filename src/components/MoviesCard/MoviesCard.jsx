@@ -25,11 +25,7 @@ const MoviesCard = ({
 
   const handleClickSave = (e) => {
     e.preventDefault();
-    if (isMovieSaved) {
-      onDeleteSaveFilm(movie._id);
-    } else {
-      onSaveFilms(movie);
-    }
+    onSaveFilms(movie);
     setIsMovieSaved(prevState => !prevState);
   };
 
