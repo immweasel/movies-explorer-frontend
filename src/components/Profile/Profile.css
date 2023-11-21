@@ -73,6 +73,15 @@
   outline: none;
 }
 
+.profile__input:hover {
+  color: #000000cc;
+  transition: 1s ease;
+}
+
+.profile__input:focus:hover {
+  color: #000;
+}
+
 .profile__input:focus {
   border-bottom: 1px solid #3456F3;
 }
@@ -102,6 +111,10 @@
   font-size: 11px;
   font-weight: 400;
   line-height: 1.18;
+}
+
+.profile__error-submit_success {
+  color: #2BE080;
 }
 
 .profile__btn-save {
@@ -136,6 +149,7 @@
 .profile__btn-save:disabled {
   color: #C2C2C2;
   background-color: #F8F8F8;
+  cursor: auto;
 }
 
 .profile__error-submit_show {
@@ -159,6 +173,20 @@
   outline: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+.profile__btn-redact:hover {
+  color: #000000cc;
+}
+
+.profile__btn-redact:disabled {
+  cursor: auto;
+  color: #C2C2C2;
+}
+
+.profile__btn-redact:disabled:hover {
+  cursor: auto;
+  color: #C2C2C2;
 }
 
 .profile__link {

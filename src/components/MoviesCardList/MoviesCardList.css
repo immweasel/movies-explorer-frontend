@@ -48,6 +48,9 @@
   height: 140px;
 }
 
+.movies-list__not-found {
+  font-family: 'Inter', Arial, sans-serif;
+}
 
 @media screen and (max-width: 1200px) {
   .movies-list__list {
